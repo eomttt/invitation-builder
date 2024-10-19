@@ -1,10 +1,14 @@
+import { ComponentPropsWithoutRef } from 'react';
+
 import { Description } from './components/description/Description';
 import { Layout } from './components/layout/Layout';
 import { Title } from './components/title/Title';
 
-const Builder = () => {
+type BuilderProps = ComponentPropsWithoutRef<'div'>;
+
+const Builder = ({ className, ...props }: BuilderProps) => {
   return (
-    <div className="grow shrink-0 basis-2/5">
+    <div className={className} {...props}>
       <Layout />
       <Title />
       <Description />
