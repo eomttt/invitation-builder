@@ -1,5 +1,5 @@
-import { atom } from "jotai";
+import { atom } from 'jotai';
 
-const titleAtom = atom("");
+const titleAtom = atom('');
 
 export { titleAtom };

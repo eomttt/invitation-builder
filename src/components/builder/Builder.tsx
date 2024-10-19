@@ -1,4 +1,4 @@
-import { Title } from "./components/title/Title";
+import { Title } from './components/title/Title';
 
 const Builder = () => {
   return (

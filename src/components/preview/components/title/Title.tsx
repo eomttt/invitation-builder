@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { titleAtom } from "atoms/form";
-import { useAtomValue } from "jotai";
+import { titleAtom } from 'atoms/form';
+import { useAtomValue } from 'jotai';
 
 const Title = () => {
   const title = useAtomValue(titleAtom);

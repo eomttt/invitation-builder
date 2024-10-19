@@ -1,4 +1,4 @@
-import { Title } from "components/preview/components/title/Title";
+import { Title } from 'components/preview/components/title/Title';
 
 const Preview = () => {
   return (
