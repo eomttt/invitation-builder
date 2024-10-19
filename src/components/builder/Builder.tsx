@@ -2,10 +2,9 @@ import { Title } from "./components/title/Title";
 
 const Builder = () => {
   return (
-    <>
-      Builder
+    <div className="grow shrink-0 basis-2/5">
       <Title />
-    </>
+    </div>
   );
 };
 
