@@ -1,13 +1,18 @@
 'use client';
 
 import { titleAtom } from 'atoms/form';
-import { Textarea } from 'components/ui/textarea';
+import { ContentEditable } from 'components/ui/ContentEditable';
 import { useAtom } from 'jotai';
 
 const Title = () => {
-  const [title, setTitle] = useAtom(titleAtom);
+  const [, setTitle] = useAtom(titleAtom);
 
-  return <Textarea value={title} onChange={e => setTitle(e.target.value)} />;
+  return (
+    <div>
+      <h1>Title</h1>
+      <ContentEditable onInput={e => setTitle(e.currentTarget.innerHTML)} />
+    </div>
+  );
 };
 
 export { Title };
