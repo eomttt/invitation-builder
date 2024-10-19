@@ -9,7 +9,7 @@ type TitleProps = ComponentPropsWithoutRef<'div'>;
 const Title = (props: TitleProps) => {
   const title = useAtomValue(titleAtom);
 
-  return <div {...props} dangerouslySetInnerHTML={{ __html: title }} />;
+  return <h1 {...props} dangerouslySetInnerHTML={{ __html: title }} />;
 };
 
 export { Title };

@@ -9,7 +9,7 @@ type DescriptionProps = ComponentPropsWithoutRef<'div'>;
 const Description = (props: DescriptionProps) => {
   const description = useAtomValue(descriptionAtom);
 
-  return <div {...props} dangerouslySetInnerHTML={{ __html: description }} />;
+  return <h2 {...props} dangerouslySetInnerHTML={{ __html: description }} />;
 };
 
 export { Description };

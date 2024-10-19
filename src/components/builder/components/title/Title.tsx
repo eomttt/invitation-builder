@@ -2,10 +2,10 @@
 
 import { titleAtom } from 'atoms/form';
 import { ContentEditable } from 'components/ui/ContentEditable';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 
 const Title = () => {
-  const [, setTitle] = useAtom(titleAtom);
+  const setTitle = useSetAtom(titleAtom);
 
   return (
     <div>

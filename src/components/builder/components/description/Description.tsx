@@ -2,10 +2,10 @@
 
 import { descriptionAtom } from 'atoms/form';
 import { ContentEditable } from 'components/ui/ContentEditable';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 
 const Description = () => {
-  const [, setDescription] = useAtom(descriptionAtom);
+  const setDescription = useSetAtom(descriptionAtom);
 
   return (
     <div>
