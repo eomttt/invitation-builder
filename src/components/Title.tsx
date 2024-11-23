@@ -6,7 +6,7 @@ import { CountDown } from './CountDown';
 const bornDate = new Date(2024, 7, 27, 11, 49);
 
 const Title = () => {
-  const [count, setRenderCount] = useState(0);
+  const [, setRenderCount] = useState(0);
 
   const diffMinutes = differenceInMinutes(new Date(), bornDate);
 
