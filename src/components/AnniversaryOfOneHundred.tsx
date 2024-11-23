@@ -25,16 +25,16 @@ const AnniversaryOfOneHundred = () => {
   return (
     <div className="flex justify-center">
       <div
-        className="bg-black  w-full max-w-1024 overflow-x-clip"
+        className="bg-black w-full max-w-600 overflow-x-clip"
         style={{
-          paddingBottom: `${window.innerHeight}px`,
+          paddingBottom: `${window.innerHeight / 2}px`,
         }}
       >
         <Title />
         <div
           className="flex flex-col"
           style={{
-            gap: `${window.innerHeight}px`,
+            gap: `${window.innerHeight / 2}px`,
           }}
         >
           <CardSections

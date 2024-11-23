@@ -19,18 +19,15 @@ const CardSections = ({
   const cardContainerRef = useRef<HTMLDivElement | null>(null);
 
   const height = window.innerHeight;
+  const containerGap = height / 2;
   const cardContainerTopOffset = height / 2 - CARD_HEIGHT / 2;
 
-  const start = Math.max(
-    titleHeight + (height + height) * section - cardContainerTopOffset,
-    0
-  );
-  const end =
-    titleHeight +
-    (height + height) * section +
-    height -
-    CARD_HEIGHT -
-    cardContainerTopOffset;
+  const startPosition =
+    titleHeight + (height + containerGap) * section - cardContainerTopOffset;
+  const endPosition = startPosition + height - CARD_HEIGHT;
+
+  const start = Math.max(startPosition, 0);
+  const end = endPosition;
 
   const scrollPercentage =
     Math.min(Math.max((scrollY - start) / (end - start), 0), 1) * 100;
@@ -49,7 +46,7 @@ const CardSections = ({
       <div
         className="flex gap-10 sticky w-card-container h-card-h"
         style={{
-          top: 'calc(50% - 150px)',
+          top: `${cardContainerTopOffset}px`,
           transform: transform,
         }}
       >

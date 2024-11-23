@@ -17,7 +17,7 @@ module.exports = {
       spacing: {
         10: '10px',
         30: '30px',
-        1024: '1024px',
+        600: '600px',
 
         title: '64px',
         'card-w': '200px',
