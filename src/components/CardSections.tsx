@@ -3,14 +3,14 @@ import { useRef } from 'react';
 const CARD_HEIGHT = 300;
 
 interface CardSectionsProps {
-  titleHeight: number;
+  defaultOffsetTop: number;
   section: number;
   scrollY: number;
   dir: 'right' | 'left';
   cards: Array<string>;
 }
 const CardSections = ({
-  titleHeight,
+  defaultOffsetTop,
   section,
   scrollY,
   dir,
@@ -23,7 +23,9 @@ const CardSections = ({
   const cardContainerTopOffset = height / 2 - CARD_HEIGHT / 2;
 
   const startPosition =
-    titleHeight + (height + containerGap) * section - cardContainerTopOffset;
+    defaultOffsetTop +
+    (height + containerGap) * section -
+    cardContainerTopOffset;
   const endPosition = startPosition + height - CARD_HEIGHT;
 
   const start = Math.max(startPosition, 0);
