@@ -4,7 +4,26 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 
   theme: {
+    fontSize: {
+      title: [
+        '24px',
+        {
+          lineHeight: '120%',
+          fontWeight: 'bold',
+        },
+      ],
+    },
     extend: {
+      spacing: {
+        10: '10px',
+        30: '30px',
+        1024: '1024px',
+
+        title: '64px',
+        'card-w': '200px',
+        'card-h': '300px',
+        'card-container': '1040px',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

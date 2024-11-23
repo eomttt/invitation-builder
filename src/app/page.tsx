@@ -1,3 +1,5 @@
+import { AnniversaryOfOneHundred } from 'components/AnniversaryOfOneHundred';
+
 export default function Page() {
-  return <div></div>;
+  return <AnniversaryOfOneHundred />;
 }
