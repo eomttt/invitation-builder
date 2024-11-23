@@ -8,9 +8,13 @@ import { Title } from './Title';
 
 const AnniversaryOfOneHundred = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [containerGap, setContainerGap] = useState(0);
 
-  const containerGap = window.innerHeight / 2;
   const defaultSectionOffset = 64 + containerGap;
+
+  useEffect(() => {
+    setContainerGap(window.innerHeight / 2);
+  }, []);
 
   useEffect(() => {
     const handler = (e: Event) => {

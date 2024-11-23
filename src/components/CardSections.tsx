@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const CARD_HEIGHT = 300;
 
@@ -16,9 +16,10 @@ const CardSections = ({
   dir,
   cards,
 }: CardSectionsProps) => {
+  const [height, setHeight] = useState(0);
+
   const cardContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const height = window.innerHeight;
   const containerGap = height / 2;
   const cardContainerTopOffset = height / 2 - CARD_HEIGHT / 2;
 
@@ -37,6 +38,10 @@ const CardSections = ({
   const translateValue =
     dir === 'right' ? 20 - scrollPercentage : -80 + scrollPercentage;
   const transform = `translateX(${translateValue}%)`;
+
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  }, []);
 
   return (
     <div
