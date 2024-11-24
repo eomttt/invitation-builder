@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 const CARD_HEIGHT = 300;
 
 interface CardSectionsProps {
   defaultOffsetTop: number;
+  title?: ReactNode;
   section: number;
   scrollY: number;
   dir: 'right' | 'left';
@@ -11,6 +12,7 @@ interface CardSectionsProps {
 }
 const CardSections = ({
   defaultOffsetTop,
+  title,
   section,
   scrollY,
   dir,
@@ -51,17 +53,36 @@ const CardSections = ({
       ref={cardContainerRef}
     >
       <div
-        className="flex gap-10 sticky w-card-container h-card-h"
+        className="sticky "
         style={{
           top: `${cardContainerTopOffset}px`,
-          transform: transform,
         }}
       >
-        {cards.map((card, index) => (
-          <div key={index} className="bg-white w-card-w h-full shrink-0">
-            {`사진 ${index}`}
+        <div className="relative">
+          <span
+            className="text-title absolute -top-40 left-20 text-black"
+            style={{
+              opacity: Math.min(scrollPercentage, 50) / 50,
+              transform: `translateY(${-30 + (Math.min(scrollPercentage, 50) * 30) / 50}%)`,
+              transition: 'transform opacity',
+            }}
+          >
+            {title}
+          </span>
+          <div
+            className="flex gap-10 w-card-container h-card-h"
+            style={{
+              transform: transform,
+              transition: 'transform',
+            }}
+          >
+            {cards.map((card, index) => (
+              <div key={index} className="bg-white w-card-w h-full shrink-0">
+                <img src={card} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

@@ -16,10 +16,15 @@ module.exports = {
     extend: {
       spacing: {
         10: '10px',
+        20: '20px',
         30: '30px',
+        40: '40px',
+        50: '50px',
+        500: '500px',
         600: '600px',
 
-        title: '64px',
+        title: '76px',
+        count: '15px',
         'card-w': '200px',
         'card-h': '300px',
         'card-container': '1040px',
@@ -30,6 +35,7 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        yellowLightest: '#fffcf2',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

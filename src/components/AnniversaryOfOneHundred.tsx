@@ -1,16 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { HoloCard } from 'react-holo-card-effect';
 
 import { CardSections } from './CardSections';
+import { MainCard } from './MainCard';
 import { Title } from './Title';
 
 const AnniversaryOfOneHundred = () => {
   const [scrollY, setScrollY] = useState(0);
   const [containerGap, setContainerGap] = useState(0);
 
-  const defaultSectionOffset = 64 + containerGap;
+  // Title + MainCard
+  const defaultSectionOffset = 76 + 550;
 
   useEffect(() => {
     setContainerGap(window.innerHeight / 2);
@@ -33,26 +34,14 @@ const AnniversaryOfOneHundred = () => {
   return (
     <div className="flex justify-center">
       <div
-        className="bg-black w-full max-w-600 overflow-x-clip"
+        className="bg-yellowLightest w-full max-w-600 overflow-x-clip"
         style={{
           paddingBottom: `${containerGap}px`,
         }}
       >
         <Title />
-        <div
-          className="flex items-center justify-center"
-          style={{
-            height: `${containerGap}px`,
-          }}
-        >
-          <HoloCard
-            url={
-              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2024-11-24+%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB+1.24.40.png'
-            }
-            height={300} // optional, default 446
-            width={200} // optional, default 320
-            showSparkles={false} // optional, default true
-          />
+        <div className="flex items-center justify-center h-500 mb-50">
+          <MainCard />
         </div>
         <div
           className="flex flex-col"
@@ -61,20 +50,34 @@ const AnniversaryOfOneHundred = () => {
           }}
         >
           <CardSections
+            title="첫 만남"
             defaultOffsetTop={defaultSectionOffset}
             section={0}
             scrollY={scrollY}
             dir="right"
-            cards={['1', '2', '3', '4', '5']}
+            cards={[
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-2-hand.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-3.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-4-foot.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-5.png',
+            ]}
           />
           <CardSections
+            title="집으로..."
             defaultOffsetTop={defaultSectionOffset}
             section={1}
             scrollY={scrollY}
             dir="left"
-            cards={['1', '2', '3', '4', '5']}
+            cards={[
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/go-home-1.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/go-home-2.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/go-home-3.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/go-home-4.png',
+              'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/go-home-5.png',
+            ]}
           />
-          <CardSections
+          {/* <CardSections
             defaultOffsetTop={defaultSectionOffset}
             section={2}
             scrollY={scrollY}
@@ -94,7 +97,7 @@ const AnniversaryOfOneHundred = () => {
             scrollY={scrollY}
             dir="right"
             cards={['1', '2', '3', '4', '5']}
-          />
+          /> */}
         </div>
       </div>
     </div>

@@ -25,9 +25,10 @@ const Title = () => {
   }, []);
 
   return (
-    <div className="h-title flex text-white items-center justify-between px-10">
-      <span className="text-title">채이의 백일을 축하합니다.</span>
-      <div className="flex gap-10 text-title">
+    <div className="h-title flex flex-col justify-center text-black px-10 gap-10">
+      <span className="text-title self-start">채이, 백일</span>
+      <div className="flex gap-10 text-count self-end items-center">
+        <span>태어난지</span>
         <div className="flex items-center justify-center">
           <CountDown counter={Math.floor(days / 100)} />
           <CountDown counter={Math.floor(days / 10)} />
