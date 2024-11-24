@@ -1,37 +1,31 @@
-const CountDown = ({
-  maxCount = 10,
-  counter,
-}: {
-  maxCount?: number;
-  counter: number;
-}) => {
-  return (
-    <ul className="card-list">
-      {Array.from({ length: maxCount }).map((_, index) => (
-        <li
-          key={index}
-          className={
-            index === counter
-              ? 'front'
-              : counter - 1 < 0
-                ? index === 0
-                  ? ''
-                  : 'back'
-                : index === (counter - 1) % maxCount
-                  ? 'back'
-                  : ''
-          }
-        >
-          <div className="upper">
-            <div className="num">{index}</div>
-          </div>
-          <div className="lower">
-            <div className="num">{index}</div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
+import { differenceInMinutes } from 'date-fns';
+import { useEffect, useState } from 'react';
+
+const bornDate = new Date(2024, 7, 27, 11, 49);
+
+const CountDown = () => {
+  const [, setRenderCount] = useState(0);
+
+  const diffMinutes = differenceInMinutes(new Date(), bornDate);
+
+  const days = Math.floor(diffMinutes / (24 * 60));
+  const hours = Math.floor((diffMinutes % (24 * 60)) / 60);
+  const mins = diffMinutes % 60;
+
+  const hoursText = hours < 10 ? `0${hours}` : hours;
+  const minsText = mins < 10 ? `0${mins}` : mins;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRenderCount(prev => prev + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return `${days}일 ${hoursText}시간 ${minsText}분`;
 };
 
 export { CountDown };
