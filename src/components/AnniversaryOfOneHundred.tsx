@@ -14,7 +14,7 @@ const AnniversaryOfOneHundred = () => {
   const defaultSectionOffset = 76 + 550;
 
   useEffect(() => {
-    setContainerGap(window.innerHeight / 2);
+    setContainerGap(window.innerHeight / 4);
   }, []);
 
   useEffect(() => {
