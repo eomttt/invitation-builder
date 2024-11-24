@@ -58,16 +58,36 @@ const CardSections = ({
           top: `${cardContainerTopOffset}px`,
         }}
       >
-        <div className="relative">
+        <div className="relative text-black px-20">
           <span
-            className="text-title absolute -top-40 left-20 text-black"
+            className="text-title absolute -top-120"
             style={{
-              opacity: Math.min(scrollPercentage, 50) / 50,
-              transform: `translateY(${-30 + (Math.min(scrollPercentage, 50) * 30) / 50}%)`,
+              opacity: Math.min(scrollPercentage, 20) / 20,
+              transform: `translateY(${-50 + (Math.min(scrollPercentage, 20) * 50) / 20}%)`,
               transition: 'transform opacity',
             }}
           >
-            {title}
+            처음
+          </span>
+          <span
+            className="text-title absolute -top-80"
+            style={{
+              opacity: Math.min(scrollPercentage - 20, 40) / 40,
+              transform: `translateY(${-50 + (Math.min(Math.max(scrollPercentage - 20, 0), 40) * 50) / 40}%)`,
+              transition: 'transform opacity',
+            }}
+          >
+            만난날
+          </span>
+          <span
+            className="text-title absolute -top-40"
+            style={{
+              opacity: Math.min(scrollPercentage - 40, 80) / 80,
+              transform: `translateY(${-50 + (Math.min(Math.max(scrollPercentage - 40, 0), 80) * 50) / 80}%)`,
+              transition: 'transform opacity',
+            }}
+          >
+            그날을 아직도 잊지 못합니다.
           </span>
           <div
             className="flex gap-10 w-card-container h-card-h"
