@@ -50,7 +50,7 @@ const AnniversaryOfOneHundred = () => {
           }}
         >
           <CardSections
-            title="첫 만남"
+            title={['처음 만난 날', '그날을', '아직도 기억합니다.']}
             defaultOffsetTop={defaultSectionOffset}
             section={0}
             scrollY={scrollY}
@@ -64,7 +64,7 @@ const AnniversaryOfOneHundred = () => {
             ]}
           />
           <CardSections
-            title="집으로..."
+            title={['처음 만난 날', '그날을', '아직도 기억합니다.']}
             defaultOffsetTop={defaultSectionOffset}
             section={1}
             scrollY={scrollY}

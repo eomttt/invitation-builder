@@ -4,7 +4,7 @@ const CARD_HEIGHT = 300;
 
 interface CardSectionsProps {
   defaultOffsetTop: number;
-  title?: ReactNode;
+  title: Array<ReactNode>;
   section: number;
   scrollY: number;
   dir: 'right' | 'left';
@@ -67,7 +67,7 @@ const CardSections = ({
               transition: 'transform opacity',
             }}
           >
-            처음
+            {title[0]}
           </span>
           <span
             className="text-title absolute -top-80"
@@ -77,7 +77,7 @@ const CardSections = ({
               transition: 'transform opacity',
             }}
           >
-            만난날
+            {title[1]}
           </span>
           <span
             className="text-title absolute -top-40"
@@ -87,7 +87,7 @@ const CardSections = ({
               transition: 'transform opacity',
             }}
           >
-            그날을 아직도 잊지 못합니다.
+            {title[2]}
           </span>
           <div
             className="flex gap-10 w-card-container h-card-h"
