@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { EffectCards } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -31,20 +30,6 @@ const GalleryData = [
 ];
 
 const GallerySection = () => {
-  const [gallery, setGallery] = useState(GalleryData);
-
-  const handleSwipe = (
-    index: number
-    // dir: 'left' | 'right' | 'up' | 'down'
-  ) => {
-    console.log('CHECK');
-
-    const newGallery = [...gallery];
-    const [removed] = newGallery.splice(index, 1);
-    newGallery.unshift(removed);
-    setGallery(newGallery);
-  };
-
   return (
     <div className="flex flex-col items-center justify-center mb-60">
       <span>카드를 넘기면서 봐주세요.</span>
@@ -55,7 +40,7 @@ const GallerySection = () => {
           modules={[EffectCards]}
           className="mySwiper"
         >
-          {gallery.map((data, index) => (
+          {GalleryData.map((data, index) => (
             <SwiperSlide key={index}>
               <div className="w-200 h-200">
                 <img className="w-full h-full object-cover" src={data.image} />
