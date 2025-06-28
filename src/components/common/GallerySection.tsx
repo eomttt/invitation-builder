@@ -49,7 +49,7 @@ const GallerySection = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mb-60">
+    <div className="flex flex-col items-center justify-center mt-30 mb-60">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 max-w-6xl mx-auto w-full">
         {GalleryData.map((data, index) => (
           <Dialog
