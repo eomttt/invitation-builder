@@ -50,8 +50,7 @@ const GallerySection = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mb-60">
-      <span className="text-lg mb-8">사진을 클릭해서 자세히 보세요.</span>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 max-w-6xl mx-auto w-full">
         {GalleryData.map((data, index) => (
           <Dialog
             key={index}
@@ -60,8 +59,7 @@ const GallerySection = () => {
           >
             <DialogTrigger asChild>
               <div
-                className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
-                style={{ width: '120px', height: '120px' }}
+                className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-square"
                 onClick={() => handleImageClick(index)}
               >
                 <Image
