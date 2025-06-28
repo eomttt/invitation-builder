@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ShowSectionProps {
   scrollY: number;
@@ -9,14 +9,33 @@ interface ShowSectionProps {
 
 const ShowSection = ({ scrollY }: ShowSectionProps) => {
   const [clientHeight, setClientHeight] = useState(0);
+  const stickyRef = useRef<HTMLDivElement>(null);
 
   const stickyHeight = clientHeight * 4;
 
   const start = clientHeight;
   const end = stickyHeight;
 
-  const handleChangeClientHeight = useCallback((ele: HTMLDivElement) => {
-    setClientHeight(ele.clientHeight);
+  useEffect(() => {
+    const updateClientHeight = () => {
+      if (stickyRef.current) {
+        setClientHeight(stickyRef.current.clientHeight);
+      }
+    };
+
+    // 초기 설정
+    updateClientHeight();
+
+    // ResizeObserver를 사용하여 크기 변경 감지
+    const resizeObserver = new ResizeObserver(updateClientHeight);
+
+    if (stickyRef.current) {
+      resizeObserver.observe(stickyRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
 
   const percentage = Math.max(
@@ -26,7 +45,7 @@ const ShowSection = ({ scrollY }: ShowSectionProps) => {
 
   return (
     <div style={{ height: `${stickyHeight}px` }}>
-      <div className="sticky top-0 h-screen" ref={handleChangeClientHeight}>
+      <div className="sticky top-0 h-screen" ref={stickyRef}>
         <div className="relative h-full">
           <Image
             className="absolute h-full object-cover transition-opacity"
