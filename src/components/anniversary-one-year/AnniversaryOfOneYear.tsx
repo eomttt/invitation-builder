@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 
 import { GallerySection } from '../common/GallerySection';
-import { MainSectionOneYear } from './MainSectionOneYear';
+import { MapSection } from '../common/MapSection';
 import { ShowSection } from '../common/ShowSection';
+
+import { MainSectionOneYear } from './MainSectionOneYear';
 
 const AnniversaryOfOneYear = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -29,6 +31,7 @@ const AnniversaryOfOneYear = () => {
         <MainSectionOneYear />
         <ShowSection scrollY={scrollY} />
         <GallerySection />
+        <MapSection />
       </div>
     </div>
   );
