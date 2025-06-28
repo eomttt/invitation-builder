@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
@@ -63,10 +64,13 @@ const GallerySection = () => {
                 style={{ width: '120px', height: '120px' }}
                 onClick={() => handleImageClick(index)}
               >
-                <img
+                <Image
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   src={data.image}
                   alt={data.text}
+                  width={120}
+                  height={120}
+                  style={{ objectFit: 'cover' }}
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                   <span className="text-white text-sm font-medium">
@@ -77,10 +81,14 @@ const GallerySection = () => {
             </DialogTrigger>
             <DialogContent className="max-w-4xl max-h-[90vh] p-0">
               <div className="relative">
-                <img
+                <Image
                   className="w-full h-auto max-h-[80vh] object-contain"
                   src={GalleryData[selectedIndex].image}
                   alt={GalleryData[selectedIndex].text}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: '100%', height: 'auto' }}
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                   <span className="text-white text-lg font-medium">

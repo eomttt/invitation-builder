@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useState } from 'react';
 
 interface ShowSectionProps {
@@ -27,16 +28,20 @@ const ShowSection = ({ scrollY }: ShowSectionProps) => {
     <div style={{ height: `${stickyHeight}px` }}>
       <div className="sticky top-0 h-screen" ref={handleChangeClientHeight}>
         <div className="relative h-full">
-          <img
+          <Image
             className="absolute h-full object-cover transition-opacity"
             src="https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-2-hand.png"
+            alt="채이의 손"
+            fill
             style={{
               opacity: Math.max(0, 1 - percentage * 4),
             }}
           />
-          <img
+          <Image
             className="absolute h-full object-cover transition-opacity"
             src="https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-4-foot.png"
+            alt="채이의 발"
+            fill
             style={{
               opacity:
                 percentage <= 0.25
@@ -44,9 +49,11 @@ const ShowSection = ({ scrollY }: ShowSectionProps) => {
                   : Math.max(0, 2 - 4 * percentage),
             }}
           />
-          <img
+          <Image
             className="absolute h-full object-cover transition-opacity"
             src="https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-3.png"
+            alt="채이의 모습"
+            fill
             style={{
               opacity:
                 percentage <= 0.5
@@ -54,9 +61,11 @@ const ShowSection = ({ scrollY }: ShowSectionProps) => {
                   : Math.max(0, 3 - 4 * percentage),
             }}
           />
-          <img
+          <Image
             className="absolute h-full object-cover transition-opacity"
             src="https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-5.png"
+            alt="채이의 모습"
+            fill
             style={{
               opacity: percentage <= 0.75 ? Math.max(0, 4 * percentage - 2) : 1,
             }}
