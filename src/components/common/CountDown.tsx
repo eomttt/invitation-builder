@@ -25,7 +25,16 @@ const CountDown = () => {
     };
   }, []);
 
-  return `${days}일 ${hoursText}시간 ${minsText}분`;
+  return (
+    <div className="text-center">
+      <div className="text-title text-gray-500 font-medium">
+        우리 아이가 태어난 지
+      </div>
+      <div className="text-title font-bold text-pink-600 mb-2">
+        {days}일 {hoursText}시간 {minsText}분
+      </div>
+    </div>
+  );
 };
 
 export { CountDown };

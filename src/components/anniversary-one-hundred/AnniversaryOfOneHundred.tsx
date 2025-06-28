@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 
-import { GallerySection } from './GallerySection';
-import { MainSection } from './MainSection';
-import { ShowSection } from './ShowSection';
+import { GallerySection } from '../common/GallerySection';
+import { ShowSection } from '../common/ShowSection';
+
+import { MainSectionOneHundred } from './MainSectionOneHundred';
 
 const AnniversaryOfOneHundred = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -26,7 +27,7 @@ const AnniversaryOfOneHundred = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full max-w-600 overflow-x-clip">
-        <MainSection />
+        <MainSectionOneHundred />
         <ShowSection scrollY={scrollY} />
         <GallerySection />
       </div>
