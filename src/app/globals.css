@@ -62,6 +62,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    max-width: 768px;
+    margin: 0 auto;
   }
 }
 
