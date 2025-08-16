@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 
 interface PhotoGridProps {
   images: {
@@ -37,66 +37,62 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
       className={`flex-1 flex items-center justify-center px-4 ${className}`}
     >
       <div className="w-full max-w-4xl relative flex items-center justify-center">
-        {/* 흑백 컨테이너 (배경) */}
-        <div className="absolute inset-0  flex items-center justify-center">
-          <div
-            className="transition-all duration-500 ease-out grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto"
-            style={{
-              filter: 'grayscale(1) saturate(0.3) brightness(0.7)',
-            }}
-          >
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="aspect-square bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <PhotoGridContent
+          images={images}
+          style={{
+            filter: 'grayscale(1) saturate(0.3) brightness(0.7)',
+          }}
+        />
+        <PhotoGridContent
+          images={images}
+          style={{
+            mask: `linear-gradient(to bottom, 
+          rgba(0,0,0,1) 0%, 
+          rgba(0,0,0,1) ${filterValue * 100}%, 
+          rgba(0,0,0,0) ${filterValue * 100}%, 
+          rgba(0,0,0,0) 100%
+        )`,
+            WebkitMask: `linear-gradient(to bottom, 
+          rgba(0,0,0,1) 0%, 
+          rgba(0,0,0,1) ${filterValue * 100}%, 
+          rgba(0,0,0,0) ${filterValue * 100}%, 
+          rgba(0,0,0,0) 100%
+        )`,
+          }}
+        />
+      </div>
+    </div>
+  );
+};
 
-        {/* 컬러 컨테이너 (mask로 위에서 아래로 차지) */}
-        <div className="absolute inset-0  flex items-center justify-center">
+interface PhotoGridContentProps {
+  images: {
+    src: string;
+    alt: string;
+  }[];
+  style: CSSProperties;
+}
+const PhotoGridContent = ({ images, style }: PhotoGridContentProps) => {
+  return (
+    <div className="absolute inset-0  flex items-center justify-center">
+      <div
+        className="transition-all duration-500 ease-out grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto"
+        style={style}
+      >
+        {images.map((image, index) => (
           <div
-            className="transition-all duration-500 ease-out grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto"
-            style={{
-              mask: `linear-gradient(to bottom, 
-            rgba(0,0,0,1) 0%, 
-            rgba(0,0,0,1) ${filterValue * 100}%, 
-            rgba(0,0,0,0) ${filterValue * 100}%, 
-            rgba(0,0,0,0) 100%
-          )`,
-              WebkitMask: `linear-gradient(to bottom, 
-            rgba(0,0,0,1) 0%, 
-            rgba(0,0,0,1) ${filterValue * 100}%, 
-            rgba(0,0,0,0) ${filterValue * 100}%, 
-            rgba(0,0,0,0) 100%
-          )`,
-            }}
+            key={index}
+            className="aspect-square bg-white rounded-lg shadow-lg overflow-hidden"
           >
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="aspect-square bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
+            />
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
