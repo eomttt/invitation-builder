@@ -10,16 +10,10 @@ import {
   loadKakaoMapScript,
 } from '../lib/kakao-map';
 
-// 브랜드 아이콘 컴포넌트들
-const TmapIcon = ({ className = '' }: { className?: string }) => (
+// 복사 아이콘 컴포넌트
+const CopyIcon = ({ className = '' }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-  </svg>
-);
-
-const KakaoIcon = ({ className = '' }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 0 1-1.727-.11l-4.408 2.883c-.501.265-.678.236-.472-.413l.892-3.678c-2.88-1.46-4.785-3.99-4.785-6.866C1.5 6.665 6.201 3 12 3z" />
+    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
   </svg>
 );
 
@@ -43,6 +37,7 @@ const MapSection = ({
   const mapInstanceRef = useRef<unknown>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     const initializeMap = async () => {
@@ -77,42 +72,23 @@ const MapSection = ({
     initializeMap();
   }, [latitude, longitude, venueName, address]);
 
-  const handleTmapNavigation = () => {
-    // 티맵 길찾기
-    const url = `tmap://search?name=${encodeURIComponent(venueName)}&lon=${longitude}&lat=${latitude}`;
-    const webUrl = `https://tmap.life/route/search?goalname=${encodeURIComponent(venueName)}&goalx=${longitude}&goaly=${latitude}`;
-
-    // 모바일에서는 앱 실행 시도, 실패시 웹으로
-    window.open(url, '_blank');
-    setTimeout(() => window.open(webUrl, '_blank'), 1000);
-  };
-
-
-  const handleKakaoNavigation = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const kakao = (window as any).Kakao;
-    
-    if (typeof window !== 'undefined' && kakao) {
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        kakao.Navi.start({
-          name: venueName,
-          x: longitude,
-          y: latitude,
-          coordType: 'wgs84',
-        });
-        return;
-      } catch (error) {
-        console.warn('Navigation SDK failed, falling back to URL scheme:', error);
-      }
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy address:', error);
+      // 클립보드 API가 지원되지 않는 경우 폴백
+      const textArea = document.createElement('textarea');
+      textArea.value = address;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
     }
-
-    // SDK가 없거나 실패한 경우 URL 스키마 사용
-    const url = `kakaonavi://navigate?name=${encodeURIComponent(venueName)}&x=${longitude}&y=${latitude}&coord_type=wgs84`;
-    const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(venueName)},${latitude},${longitude}`;
-
-    window.open(url, '_blank');
-    setTimeout(() => window.open(webUrl, '_blank'), 1000);
   };
 
   return (
@@ -167,24 +143,25 @@ const MapSection = ({
             )}
           </div>
 
-          {/* 네비게이션 앱 버튼들 */}
-          <div className="flex flex-col gap-3 mt-4">
+          {/* 장소 정보 및 복사 버튼 */}
+          <div className="mt-6 bg-white rounded-lg shadow-md p-6">
+            <div className="text-center mb-4">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{venueName}</h3>
+              <p className="text-gray-600 text-base">{address}</p>
+            </div>
+            
             <button
-              onClick={handleTmapNavigation}
-              className="bg-[#FF5722] hover:bg-[#E64A19] text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+              onClick={handleCopyAddress}
+              className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center ${
+                isCopied
+                  ? 'bg-green-500 text-white'
+                  : 'bg-blue-500 hover:bg-blue-600 text-white'
+              }`}
+              disabled={isCopied}
             >
-              <TmapIcon className="w-6 h-6 mr-3" />
-              <span className="text-lg">티맵으로 길찾기</span>
+              <CopyIcon className="w-5 h-5 mr-2" />
+              <span>{isCopied ? '복사됨!' : '주소 복사하기'}</span>
             </button>
-
-            <button
-              onClick={handleKakaoNavigation}
-              className="bg-[#FEE500] hover:bg-[#FDD835] text-black font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
-            >
-              <KakaoIcon className="w-6 h-6 mr-3" />
-              <span className="text-lg">카카오네비로 길찾기</span>
-            </button>
-
           </div>
         </div>
       </div>
