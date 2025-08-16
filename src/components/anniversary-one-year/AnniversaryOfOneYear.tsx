@@ -1,6 +1,7 @@
 'use client';
 
 import { InvitationHeader } from '../common/InvitationHeader';
+import { MainPhotoSection } from '../common/MainPhotoSection';
 import { MapSection } from '../common/MapSection';
 import { PhotoGrid } from '../common/PhotoGrid';
 
@@ -26,15 +27,25 @@ const AnniversaryOfOneYear = () => {
 
   return (
     <div className="min-h-screen">
-      {/* 첫 화면: 300vh 높이로 설정하여 컬러 변환 완료 후 지도 등장 */}
+      {/* InvitationHeader - 일반 스크롤 */}
+      <div className="mb-8 md:mb-12">
+        <InvitationHeader
+          title="엄채이의 첫 생일에 초대합니다"
+          date="2025/08/23 오전 11시 30분"
+        />
+      </div>
+
+      {/* MainPhotoSection - 사진만 sticky */}
+      <div className="h-[400vh] relative">
+        <div className="sticky top-0 h-screen">
+          <MainPhotoSection />
+        </div>
+      </div>
+
+      {/* PhotoGrid - 전체 화면 스크롤 애니메이션 */}
       <div className="h-[300vh] relative">
-        {/* InvitationHeader를 sticky로 설정 */}
-        <div className="sticky top-0 h-screen flex flex-col">
-          <InvitationHeader
-            title="엄채이의 첫 생일에 초대합니다"
-            date="2025/08/23 오전 11시 30분"
-          />
-          <PhotoGrid images={images} className="flex-1" />
+        <div className="sticky top-0 h-screen">
+          <PhotoGrid images={images} className="h-full" />
         </div>
       </div>
 

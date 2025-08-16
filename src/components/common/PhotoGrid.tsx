@@ -78,7 +78,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
 
   return (
     <div className={`flex items-center justify-center px-4 ${className}`}>
-      <div className="w-full max-w-4xl relative flex items-center justify-center h-full overflow-visible">
+      <div className="w-full max-w-5xl relative flex items-center justify-center h-full overflow-visible">
         <PhotoGridContent
           images={images}
           style={{
@@ -119,7 +119,7 @@ const PhotoGridContent = ({ images, style }: PhotoGridContentProps) => {
     <div className="absolute inset-0 flex items-center justify-center overflow-visible">
       <div className="relative">
         <div
-          className="transition-all duration-500 ease-out bg-black p-2 md:p-3 w-full max-w-sm md:max-w-md lg:max-w-lg relative"
+          className="transition-all duration-500 ease-out bg-black p-3 md:p-4 w-full max-w-md md:max-w-lg lg:max-w-xl relative"
           style={style}
         >
           <div className="grid grid-cols-2 gap-2 md:gap-3">
