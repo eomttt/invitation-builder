@@ -63,11 +63,26 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // 300vh 컨테이너 내에서 스크롤 위치에 따라 색상 효과 계산
-      // 0 (흑백)에서 1 (컬러)로 변환
-      // 200vh 지점에서 컬러 효과 완성, 나머지 100vh는 여유 공간
-      const progress = Math.min(1, Math.max(0, scrollY / (windowHeight * 2)));
-      setFilterValue(progress);
+      // PhotoGrid 섹션의 시작점 계산
+      // InvitationHeader(~200px) + MainPhotoSection(400vh) = PhotoGrid 섹션 시작점
+      const invitationHeaderHeight = 200;
+      const mainPhotoSectionHeight = windowHeight * 4;
+      const photoGridSectionStart =
+        invitationHeaderHeight + mainPhotoSectionHeight;
+
+      // PhotoGrid 섹션에 진입했을 때부터 효과 시작
+      if (scrollY >= photoGridSectionStart) {
+        const photoGridScrollY = scrollY - photoGridSectionStart;
+        // 300vh 컨테이너 내에서 200vh 지점까지 컬러 변환
+        const progress = Math.min(
+          1,
+          Math.max(0, photoGridScrollY / (windowHeight * 2))
+        );
+        setFilterValue(progress);
+      } else {
+        // PhotoGrid 섹션 진입 전에는 완전 흑백
+        setFilterValue(0);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -77,7 +92,10 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
   }, []);
 
   return (
-    <div className={`flex items-center justify-center px-4 ${className}`}>
+    <div
+      className={`flex items-center justify-center px-4 ${className}`}
+      style={{ backgroundColor: '#4a4a4a' }}
+    >
       <div className="w-full max-w-5xl relative flex items-center justify-center h-full overflow-visible">
         <PhotoGridContent
           images={images}
