@@ -23,11 +23,6 @@ const KakaoIcon = ({ className = '' }: { className?: string }) => (
   </svg>
 );
 
-const NaverIcon = ({ className = '' }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845z" />
-  </svg>
-);
 
 interface MapSectionProps {
   venueName?: string;
@@ -92,17 +87,27 @@ const MapSection = ({
     setTimeout(() => window.open(webUrl, '_blank'), 1000);
   };
 
-  const handleNaverNavigation = () => {
-    // 네이버 네비 길찾기
-    const url = `nmap://place?lat=${latitude}&lng=${longitude}&name=${encodeURIComponent(venueName)}&appname=com.example.app`;
-    const webUrl = `https://map.naver.com/v5/search/${encodeURIComponent(venueName)}`;
-
-    window.open(url, '_blank');
-    setTimeout(() => window.open(webUrl, '_blank'), 1000);
-  };
 
   const handleKakaoNavigation = () => {
-    // 카카오 네비 길찾기
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const kakao = (window as any).Kakao;
+    
+    if (typeof window !== 'undefined' && kakao) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        kakao.Navi.start({
+          name: venueName,
+          x: longitude,
+          y: latitude,
+          coordType: 'wgs84',
+        });
+        return;
+      } catch (error) {
+        console.warn('Navigation SDK failed, falling back to URL scheme:', error);
+      }
+    }
+
+    // SDK가 없거나 실패한 경우 URL 스키마 사용
     const url = `kakaonavi://navigate?name=${encodeURIComponent(venueName)}&x=${longitude}&y=${latitude}&coord_type=wgs84`;
     const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(venueName)},${latitude},${longitude}`;
 
@@ -180,13 +185,6 @@ const MapSection = ({
               <span className="text-lg">카카오네비로 길찾기</span>
             </button>
 
-            <button
-              onClick={handleNaverNavigation}
-              className="bg-[#03C75A] hover:bg-[#00B050] text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
-            >
-              <NaverIcon className="w-6 h-6 mr-3" />
-              <span className="text-lg">네이버지도로 길찾기</span>
-            </button>
           </div>
         </div>
       </div>
