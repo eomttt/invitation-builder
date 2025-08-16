@@ -3,45 +3,30 @@
 import Image from 'next/image';
 import { CSSProperties, useEffect, useState } from 'react';
 
-// 스티커 컴포넌트
-const Sticker = ({ className = '' }: { className?: string }) => {
+// 스카치테이프 컴포넌트
+const ScotchTape = ({
+  className = '',
+  rotation = 0,
+}: {
+  className?: string;
+  rotation?: number;
+}) => {
   return (
     <div
       className={`absolute z-10 ${className}`}
-      style={{ transform: 'rotate(-12deg)' }}
+      style={{ transform: `rotate(${rotation}deg)` }}
     >
       <svg
-        width="80"
-        height="80"
-        viewBox="0 0 80 80"
+        width="64"
+        height="64"
+        viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-md"
       >
-        {/* 스티커 배경 */}
-        <circle
-          cx="40"
-          cy="40"
-          r="35"
-          fill="#FF6B9D"
-          stroke="#FF4081"
-          strokeWidth="2"
-        />
-        {/* 하트 모양 */}
         <path
-          d="M40 55C40 55 25 45 25 35C25 28 30 25 35 25C37.5 25 40 27 40 30C40 27 42.5 25 45 25C50 25 55 28 55 35C55 45 40 55 40 55Z"
-          fill="white"
+          d="M29.726 5.568H26.432V2.271H23.135V0.393005L0.395004 23.135H2.274V26.432H5.571L5.572 29.725H8.868V31.606L31.605 8.863H29.726V5.568Z"
+          fill="rgba(255,255,255,0.3)"
         />
-        {/* 텍스트 */}
-        <text
-          x="40"
-          y="68"
-          textAnchor="middle"
-          className="text-xs font-bold fill-white"
-          style={{ fontSize: '10px' }}
-        >
-          1st
-        </text>
       </svg>
     </div>
   );
@@ -154,11 +139,11 @@ const PhotoGridContent = ({ images, style }: PhotoGridContentProps) => {
             ))}
           </div>
         </div>
-        <div
-          className="absolute -top-8 -left-4 md:-top-8 md:-left-8"
-          style={{ filter: 'none' }}
-        >
-          <Sticker />
+        <div className="absolute -top-4 -left-4" style={{ filter: 'none' }}>
+          <ScotchTape />
+        </div>
+        <div className="absolute bottom-12 right-12" style={{ filter: 'none' }}>
+          <ScotchTape rotation={180} />
         </div>
       </div>
     </div>
