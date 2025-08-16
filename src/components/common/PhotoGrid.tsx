@@ -76,23 +76,25 @@ const PhotoGridContent = ({ images, style }: PhotoGridContentProps) => {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div
-        className="transition-all duration-500 ease-out grid grid-cols-2 gap-3 md:gap-4 w-full max-w-sm md:max-w-md lg:max-w-lg"
+        className="transition-all duration-500 ease-out bg-black p-2 md:p-3 w-full max-w-sm md:max-w-md lg:max-w-lg"
         style={style}
       >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="aspect-[2/3] bg-white rounded-lg shadow-lg overflow-hidden w-full"
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={300}
-              height={450}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className="aspect-[2/3] overflow-hidden w-full"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={300}
+                height={450}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
