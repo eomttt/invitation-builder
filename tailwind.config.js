@@ -13,6 +13,11 @@ module.exports = {
         },
       ],
     },
+    fontFamily: {
+      'noto-sans': ['var(--font-noto-sans-kr)', 'sans-serif'],
+      'nanum-myeongjo': ['var(--font-nanum-myeongjo)', 'serif'],
+      'single-day': ['var(--font-single-day)', 'cursive'],
+    },
     extend: {
       spacing: {
         10: '10px',

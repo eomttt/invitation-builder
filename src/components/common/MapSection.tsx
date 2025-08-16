@@ -82,12 +82,13 @@ const MapSection = ({
     <div className="flex flex-col items-center justify-center mb-60 px-4">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">오시는 길</h2>
-          <p className="text-lg text-gray-600">
-            돌잔치 장소로 오시는 방법을 안내드립니다
-          </p>
+          <h2
+            className="font-bold text-gray-800 mb-4 font-nanum-myeongjo"
+            style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
+          >
+            오시는 길
+          </h2>
         </div>
-
         {/* 지도 섹션 */}
         <div className="mb-8">
           <div className="relative">

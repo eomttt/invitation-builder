@@ -1,36 +1,45 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { GallerySection } from '../common/GallerySection';
+import { InvitationHeader } from '../common/InvitationHeader';
 import { MapSection } from '../common/MapSection';
-import { ShowSection } from '../common/ShowSection';
-
-import { MainSectionOneYear } from './MainSectionOneYear';
+import { PhotoGrid } from '../common/PhotoGrid';
 
 const AnniversaryOfOneYear = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const target = e.currentTarget as Window;
-
-      setScrollY(target.scrollY);
-    };
-
-    window.addEventListener('scroll', handler);
-
-    return () => {
-      window.removeEventListener('scroll', handler);
-    };
-  }, []);
+  const images = [
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      alt: '채이 사진 1',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      alt: '채이 사진 2',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      alt: '채이 사진 3',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      alt: '채이 사진 4',
+    },
+  ];
 
   return (
-    <div className="flex justify-center">
-      <div className="w-full max-w-600 overflow-x-clip">
-        <MainSectionOneYear />
-        <ShowSection scrollY={scrollY} />
-        <GallerySection />
+    <div className="min-h-screen">
+      {/* 첫 화면: 300vh 높이로 설정하여 컬러 변환 완료 후 지도 등장 */}
+      <div className="h-[300vh] relative">
+        {/* InvitationHeader를 sticky로 설정 */}
+        <div className="sticky top-0 h-screen flex flex-col justify-center">
+          <InvitationHeader
+            title="엄채이의 첫 생일에 초대합니다"
+            date="2025/08/23 오전 11시 30분"
+          />
+          <PhotoGrid images={images} />
+        </div>
+      </div>
+
+      {/* 카카오 맵 섹션 */}
+      <div className="py-16">
         <MapSection />
       </div>
     </div>
