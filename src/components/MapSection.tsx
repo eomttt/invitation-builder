@@ -84,7 +84,7 @@ const MapSection = ({
 
   const handleTmapNavigation = () => {
     // 티맵 길찾기
-    const url = `tmap://route?goalname=${encodeURIComponent(venueName)}&goalx=${longitude}&goaly=${latitude}`;
+    const url = `tmap://search?name=${encodeURIComponent(venueName)}&lon=${longitude}&lat=${latitude}`;
     const webUrl = `https://tmap.life/route/search?goalname=${encodeURIComponent(venueName)}&goalx=${longitude}&goaly=${latitude}`;
 
     // 모바일에서는 앱 실행 시도, 실패시 웹으로
@@ -94,8 +94,8 @@ const MapSection = ({
 
   const handleNaverNavigation = () => {
     // 네이버 네비 길찾기
-    const url = `nmap://route/public?dlat=${latitude}&dlng=${longitude}&dname=${encodeURIComponent(venueName)}`;
-    const webUrl = `https://map.naver.com/v5/directions/-/-/-/transit?c=${longitude},${latitude},15,0,0,0,dh`;
+    const url = `nmap://place?lat=${latitude}&lng=${longitude}&name=${encodeURIComponent(venueName)}&appname=com.example.app`;
+    const webUrl = `https://map.naver.com/v5/search/${encodeURIComponent(venueName)}`;
 
     window.open(url, '_blank');
     setTimeout(() => window.open(webUrl, '_blank'), 1000);
@@ -103,7 +103,7 @@ const MapSection = ({
 
   const handleKakaoNavigation = () => {
     // 카카오 네비 길찾기
-    const url = `kakaonavi://navigate?ep=${longitude},${latitude}&ename=${encodeURIComponent(venueName)}`;
+    const url = `kakaonavi://navigate?name=${encodeURIComponent(venueName)}&x=${longitude}&y=${latitude}&coord_type=wgs84`;
     const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(venueName)},${latitude},${longitude}`;
 
     window.open(url, '_blank');
