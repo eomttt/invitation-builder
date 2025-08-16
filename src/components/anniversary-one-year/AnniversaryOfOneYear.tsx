@@ -29,12 +29,12 @@ const AnniversaryOfOneYear = () => {
       {/* 첫 화면: 300vh 높이로 설정하여 컬러 변환 완료 후 지도 등장 */}
       <div className="h-[300vh] relative">
         {/* InvitationHeader를 sticky로 설정 */}
-        <div className="sticky top-0 h-screen flex flex-col justify-center">
+        <div className="sticky top-0 h-screen flex flex-col">
           <InvitationHeader
             title="엄채이의 첫 생일에 초대합니다"
             date="2025/08/23 오전 11시 30분"
           />
-          <PhotoGrid images={images} />
+          <PhotoGrid images={images} className="flex-1" />
         </div>
       </div>
 

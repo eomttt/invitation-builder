@@ -34,9 +34,9 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
 
   return (
     <div
-      className={`flex-1 flex items-center justify-center px-4 ${className}`}
+      className={`flex items-center justify-center px-4 ${className}`}
     >
-      <div className="w-full max-w-4xl relative flex items-center justify-center">
+      <div className="w-full max-w-4xl relative flex items-center justify-center h-full">
         <PhotoGridContent
           images={images}
           style={{
@@ -74,21 +74,21 @@ interface PhotoGridContentProps {
 }
 const PhotoGridContent = ({ images, style }: PhotoGridContentProps) => {
   return (
-    <div className="absolute inset-0  flex items-center justify-center">
+    <div className="absolute inset-0 flex items-center justify-center">
       <div
-        className="transition-all duration-500 ease-out grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto"
+        className="transition-all duration-500 ease-out grid grid-cols-2 gap-3 md:gap-4 w-full max-w-sm md:max-w-md lg:max-w-lg"
         style={style}
       >
         {images.map((image, index) => (
           <div
             key={index}
-            className="aspect-square bg-white rounded-lg shadow-lg overflow-hidden"
+            className="aspect-[2/3] bg-white rounded-lg shadow-lg overflow-hidden w-full"
           >
             <Image
               src={image.src}
               alt={image.alt}
               width={300}
-              height={300}
+              height={450}
               className="w-full h-full object-cover"
             />
           </div>
