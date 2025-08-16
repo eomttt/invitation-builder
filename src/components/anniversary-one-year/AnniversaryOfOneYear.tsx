@@ -7,19 +7,19 @@ import { PhotoGrid } from '../common/PhotoGrid';
 const AnniversaryOfOneYear = () => {
   const images = [
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_5.jpg',
       alt: '채이 사진 1',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_2.jpg',
       alt: '채이 사진 2',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitateion_3.jpg',
       alt: '채이 사진 3',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/born-1.png',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_4.JPG',
       alt: '채이 사진 4',
     },
   ];
