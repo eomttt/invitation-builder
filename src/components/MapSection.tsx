@@ -8,7 +8,7 @@ import {
   createKakaoMap,
   createKakaoMarker,
   loadKakaoMapScript,
-} from '../../lib/kakao-map';
+} from '../lib/kakao-map';
 
 // 브랜드 아이콘 컴포넌트들
 const TmapIcon = ({ className = '' }: { className?: string }) => (

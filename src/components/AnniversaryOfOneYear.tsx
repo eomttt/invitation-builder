@@ -1,9 +1,9 @@
 'use client';
 
-import { InvitationHeader } from '../common/InvitationHeader';
-import { MainPhotoSection } from '../common/MainPhotoSection';
-import { MapSection } from '../common/MapSection';
-import { PhotoGrid } from '../common/PhotoGrid';
+import { InvitationHeader } from './InvitationHeader';
+import { MainPhotoSection } from './MainPhotoSection';
+import { MapSection } from './MapSection';
+import { PhotoGrid } from './PhotoGrid';
 
 const AnniversaryOfOneYear = () => {
   const images = [

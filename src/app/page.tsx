@@ -1,4 +1,4 @@
-import { AnniversaryOfOneYear } from 'components/anniversary-one-year/AnniversaryOfOneYear';
+import { AnniversaryOfOneYear } from 'components/AnniversaryOfOneYear';
 
 export default function Page() {
   return <AnniversaryOfOneYear />;
