@@ -126,7 +126,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
       className={`flex items-center justify-center px-4 ${className}`}
       style={{ backgroundColor: '#4a4a4a' }}
     >
-      <div className="w-full max-w-5xl relative flex items-center justify-center h-full overflow-visible">
+      <div className="w-full h-full relative flex items-center justify-center overflow-visible">
         <PhotoGridContent
           images={currentImages}
           currentMessage={currentMessage}
@@ -182,14 +182,18 @@ const PhotoGridContent = ({
     <div className="absolute inset-0 flex items-center justify-center overflow-visible">
       <div className="relative">
         <div
-          className="transition-all duration-500 ease-out bg-black p-3 pb-16 w-full max-w-md md:max-w-lg lg:max-w-xl relative"
-          style={style}
+          className="transition-all duration-500 ease-out bg-black p-3 pb-16 relative"
+          style={{
+            ...style,
+            width: 'min(90vw, calc(90vh * 0.67))',
+            height: 'min(90vh, calc(90vw / 0.67))',
+          }}
         >
-          <div className="grid grid-cols-2 gap-2 md:gap-3">
+          <div className="grid grid-cols-2 gap-3 h-full">
             {images.map((image, index) => (
               <div
                 key={index}
-                className="aspect-[2/3] overflow-hidden w-full h-[200px] md:h-[250px] lg:h-[300px] bg-gray-200"
+                className="aspect-[2/3] overflow-hidden w-full h-full bg-gray-200"
               >
                 <Image
                   src={image.src}
@@ -233,7 +237,11 @@ const PhotoGridContent = ({
                 {currentMessage}
               </p>
             </div>
-            <button onClick={onShuffle} aria-label="새로고침">
+            <button
+              onClick={onShuffle}
+              aria-label="새로고침"
+              className="p-2 -m-2"
+            >
               <svg
                 width="16"
                 height="16"
