@@ -1,7 +1,11 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Nanum_Myeongjo, Noto_Sans_KR, Single_Day } from 'next/font/google';
+import {
+  Nanum_Myeongjo,
+  Noto_Sans_KR,
+  Single_Day,
+} from 'next/font/google';
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
@@ -19,6 +23,7 @@ const singleDay = Single_Day({
   weight: ['400'],
   variable: '--font-single-day',
 });
+
 
 export const metadata: Metadata = {
   title: '엄채이의 첫 생일에 초대합니다',

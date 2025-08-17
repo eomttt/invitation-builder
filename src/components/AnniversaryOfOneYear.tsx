@@ -8,20 +8,68 @@ import { PhotoGrid } from './PhotoGrid';
 const AnniversaryOfOneYear = () => {
   const images = [
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_5.jpg',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_1.jpg',
       alt: '채이 사진 1',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_2.jpg',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_2.jpg',
       alt: '채이 사진 2',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitateion_3.jpg',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_3.jpg',
       alt: '채이 사진 3',
     },
     {
-      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_4.JPG',
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_4.jpg',
       alt: '채이 사진 4',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_5.jpg',
+      alt: '채이 사진 5',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_6.jpg',
+      alt: '채이 사진 6',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_7.jpg',
+      alt: '채이 사진 7',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_8.jpg',
+      alt: '채이 사진 8',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_9.jpg',
+      alt: '채이 사진 9',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_10.jpg',
+      alt: '채이 사진 10',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_11.jpg',
+      alt: '채이 사진 11',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_12.jpg',
+      alt: '채이 사진 12',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_13.jpg',
+      alt: '채이 사진 13',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_14.jpg',
+      alt: '채이 사진 14',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_15.jpg',
+      alt: '채이 사진 15',
+    },
+    {
+      src: 'https://chaei-picture.s3.ap-northeast-2.amazonaws.com/invitation_content_16.jpg',
+      alt: '채이 사진 16',
     },
   ];
 
