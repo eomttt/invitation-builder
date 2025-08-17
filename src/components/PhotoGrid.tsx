@@ -69,7 +69,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
   // 다음 4장 보여주기 함수
   const shuffleImages = () => {
     const nextBatch = (currentBatch + 1) % 4;
-    
+
     // 4번째 배치까지 모두 본 경우, 다시 랜덤 셔플
     if (nextBatch === 0) {
       const limitedImages = images.slice(0, 16);
@@ -81,7 +81,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
       const startIndex = nextBatch * 4;
       setCurrentImages(shuffledImages.slice(startIndex, startIndex + 4));
     }
-    
+
     setCurrentBatch(nextBatch);
     setCurrentMessage(
       BIRTHDAY_MESSAGES[Math.floor(Math.random() * BIRTHDAY_MESSAGES.length)]
@@ -131,6 +131,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
           images={currentImages}
           currentMessage={currentMessage}
           onShuffle={shuffleImages}
+          bg
           style={{
             filter: 'grayscale(1) saturate(0.3) brightness(0.7)',
           }}
@@ -139,6 +140,7 @@ const PhotoGrid = ({ images, className = '' }: PhotoGridProps) => {
           images={currentImages}
           currentMessage={currentMessage}
           onShuffle={shuffleImages}
+          bg={false}
           style={{
             mask: `linear-gradient(to bottom, 
           rgba(0,0,0,1) 0%, 
@@ -166,12 +168,14 @@ interface PhotoGridContentProps {
   }[];
   currentMessage: string;
   onShuffle: () => void;
+  bg?: boolean;
   style: CSSProperties;
 }
 const PhotoGridContent = ({
   images,
   currentMessage,
   onShuffle,
+  bg,
   style,
 }: PhotoGridContentProps) => {
   return (
@@ -183,7 +187,10 @@ const PhotoGridContent = ({
         >
           <div className="grid grid-cols-2 gap-2 md:gap-3">
             {images.map((image, index) => (
-              <div key={index} className="aspect-[2/3] overflow-hidden w-full h-[200px] md:h-[250px] lg:h-[300px] bg-gray-200">
+              <div
+                key={index}
+                className="aspect-[2/3] overflow-hidden w-full h-[200px] md:h-[250px] lg:h-[300px] bg-gray-200"
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -193,12 +200,13 @@ const PhotoGridContent = ({
                   sizes="(max-width: 768px) 150px, (max-width: 1024px) 200px, 250px"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                  onError={(e) => {
+                  onError={e => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm">이미지 로드 실패</div>';
+                      parent.innerHTML =
+                        '<div class="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm">이미지 로드 실패</div>';
                     }
                   }}
                 />
@@ -213,40 +221,37 @@ const PhotoGridContent = ({
           <ScotchTape rotation={180} />
         </div>
         {/* 하단 영역: 문구(왼쪽) + 새로고침 버튼(오른쪽) */}
-        <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-full pl-3 pr-3">
-          <div className="flex-1 mr-2">
-            <p
-              className="text-white text-xs md:text-sm leading-tight font-single-day"
-              style={{
-                filter: 'none',
-              }}
-            >
-              {currentMessage}
-            </p>
+        {!bg && (
+          <div className="absolute bottom-3 md:bottom-6 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-full pl-3 pr-3 z-20">
+            <div className="flex-1">
+              <p
+                className="text-white text-xs md:text-sm leading-tight font-single-day text-left"
+                style={{
+                  filter: 'none',
+                }}
+              >
+                {currentMessage}
+              </p>
+            </div>
+            <button onClick={onShuffle} aria-label="새로고침">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="md:w-5 md:h-5"
+              >
+                <path
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
           </div>
-          <button
-            onClick={onShuffle}
-            className="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center hover:bg-opacity-30 rounded-full transition-all duration-200 relative z-20"
-            style={{ filter: 'none' }}
-            aria-label="새로고침"
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="md:w-4 md:h-4"
-            >
-              <path
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );
